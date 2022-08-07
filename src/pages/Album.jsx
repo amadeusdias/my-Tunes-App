@@ -22,6 +22,8 @@ class Album extends React.Component {
       artistName: response[0].artistName,
       artistAlbum: response[0].collectionName,
     });
+    console.log(this.props);
+    console.log(response);
   }
 
   render() {
@@ -36,6 +38,8 @@ class Album extends React.Component {
             key={ index }
             trackName={ musica.trackName }
             previewUrl={ musica.previewUrl }
+            trackId={ musica.trackId }
+            obj={ musica }
           />
         ))}
 
