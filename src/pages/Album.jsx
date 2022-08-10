@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
+// import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import Loading from '../components/Loading';
 
 class Album extends React.Component {
   constructor() {
@@ -11,37 +13,51 @@ class Album extends React.Component {
       musics: [],
       artistName: '',
       artistAlbum: '',
+      // favorites: [],
+      isLoading: false,
     };
   }
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const { match: { params: { id } } } = this.props;
     const response = await getMusics(id);
+    const musicas = response.filter(({ kind }) => kind === 'song');
     this.setState({
-      musics: response,
+      musics: [...musicas],
       artistName: response[0].artistName,
       artistAlbum: response[0].collectionName,
+      isLoading: false,
     });
-    console.log(this.props);
-    console.log(response);
   }
 
   render() {
-    const { musics, artistAlbum, artistName } = this.state;
+    const {
+      musics,
+      artistAlbum,
+      artistName,
+      isLoading } = this.state;
     return (
       <div data-testid="page-album">
         <Header />
-        <h4 data-testid="artist-name">{artistName}</h4>
-        <h4 data-testid="album-name">{artistAlbum}</h4>
-        {musics.map((musica, index) => index !== 0 && (
-          <MusicCard
-            key={ index }
-            trackName={ musica.trackName }
-            previewUrl={ musica.previewUrl }
-            trackId={ musica.trackId }
-            obj={ musica }
-          />
-        ))}
+        {isLoading ? <Loading /> : (
+          <div>
+            <h4 data-testid="artist-name">{artistName}</h4>
+            <h4 data-testid="album-name">{artistAlbum}</h4>
+
+          </div>
+        )}
+
+        { (
+          musics.map(({ trackName, previewUrl, trackId }) => (
+            <section key={ trackName }>
+              <MusicCard
+                trackId={ trackId }
+                trackName={ trackName }
+                previewUrl={ previewUrl }
+              />
+            </section>
+          )))}
 
       </div>
     );
