@@ -1,16 +1,6 @@
-# 🚧 README em construção 🚧
+#My Tunes Project
+Projeto realizado utilizando React, com React Router e Class Componentes. 
 
-<!-- Olá, Tryber!
+Foi utilizada a API do Itunes para criar um pseudo clone do Spotfy, em que é possivel fazer login, pesquisar artistas, listar os albuns dos artistas e escutar 30 segundos de cada musica. 
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
-
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+> Em breve o projeto vai receber CSS e será realizado o deploy.
